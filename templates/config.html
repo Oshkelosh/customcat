@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}CustomCat Settings{% endblock %}
+{% block content %}
+<h1>CustomCat Supplier</h1>
+<div class="card">
+    <h2>Configuration</h2>
+    <form method="post" action="/admin/suppliers/customcat/save" class="form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <div class="form-group"><label for="api_key">API Key</label><input type="password" id="api_key" name="api_key" value="{{ config.get('api_key', '') }}" /></div>
+        <div class="form-group"><label><input type="checkbox" name="sandbox" {% if config.get('sandbox') %}checked{% endif %} /> Sandbox orders</label></div>
+        <div class="form-group"><label><input type="checkbox" name="is_active" {% if config.get('is_active') %}checked{% endif %} /> Active</label></div>
+        <button type="submit" class="btn btn--primary">Save Configuration</button>
+    </form>
+</div>
+<div class="card" style="margin-top:1.5em;">
+    <h2>Catalog sync</h2>
+    <form method="post" action="/admin/suppliers/customcat/sync" class="form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <select name="import_status"><option value="draft">Draft</option><option value="published">Published</option></select>
+        <label><input type="checkbox" name="archive_missing" /> Archive missing</label>
+        <button type="submit" class="btn btn--secondary">Sync catalog now</button>
+    </form>
+</div>
+<p><a href="/admin/suppliers">← Back</a></p>
+{% endblock %}
