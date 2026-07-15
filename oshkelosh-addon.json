@@ -1,0 +1,9 @@
+{
+  "addon_id": "customcat",
+  "addon_name": "CustomCat",
+  "addon_description": "US print-on-demand via CustomCat API.",
+  "category": "supplier",
+  "version": "1.0.0",
+  "min_oshkelosh_version": "0.1.0",
+  "python_requires": ">=3.11"
+}
