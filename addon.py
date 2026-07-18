@@ -26,17 +26,20 @@ class CustomCatConfig(BaseModel):
 
 
 def _map_shipping(address: Dict[str, Any]) -> Dict[str, Any]:
+    from app.addons.suppliers.address import canonical_address
+
+    addr = canonical_address(address)
     return {
-        "first_name": address.get("first_name", ""),
-        "last_name": address.get("last_name", ""),
-        "address1": address.get("line1", ""),
-        "address2": address.get("line2", ""),
-        "city": address.get("city", ""),
-        "state": address.get("state", ""),
-        "zip": address.get("zip", ""),
-        "country": address.get("country", ""),
-        "email": address.get("email", ""),
-        "phone": address.get("phone", ""),
+        "first_name": addr["first_name"],
+        "last_name": addr["last_name"],
+        "address1": addr["line1"],
+        "address2": addr["line2"],
+        "city": addr["city"],
+        "state": addr["state"],
+        "zip": addr["zip"],
+        "country": addr["country_code"],
+        "email": addr["email"],
+        "phone": addr["phone"],
     }
 
 
@@ -122,8 +125,10 @@ class CustomCatAddon(SupplierAddon):
         *,
         external_id: str | None = None,
         supplier_ref: str | None = None,
+        shipping_method: str | None = None,
+        currency: str | None = None,
     ) -> Dict[str, Any]:
-        del supplier_ref
+        del supplier_ref, shipping_method, currency
         client = self._require_client()
         try:
             line_items = []
