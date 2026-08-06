@@ -13,6 +13,15 @@
     </form>
 </div>
 <div class="card" style="margin-top:1.5em;">
+    <h2>Branding</h2>
+    <p style="color:var(--clr-text-muted);margin-bottom:0;font-size:14px;">
+        CustomCat ships white-label. The public order API has no gift-message or packing-slip
+        fields. Configure any neck-label / packaging options in CustomCat or via Order Desk
+        if you use that middleware. Shared settings on
+        <a href="/admin/suppliers">Suppliers</a> do not apply here.
+    </p>
+</div>
+<div class="card" style="margin-top:1.5em;">
     <h2>Catalog sync</h2>
     <form method="post" action="/admin/suppliers/customcat/sync" class="form">
         <input type="hidden" name="csrf_token" value="{{ csrf_token }}">

@@ -127,8 +127,10 @@ class CustomCatAddon(SupplierAddon):
         supplier_ref: str | None = None,
         shipping_method: str | None = None,
         currency: str | None = None,
+        gift_message: str | None = None,
+        packing_slip: Dict[str, Any] | None = None,
     ) -> Dict[str, Any]:
-        del supplier_ref, shipping_method, currency
+        del supplier_ref, shipping_method, currency, gift_message, packing_slip
         client = self._require_client()
         try:
             line_items = []
